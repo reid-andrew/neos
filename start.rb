@@ -4,8 +4,7 @@ class Start < NearEarthObjects
   def self.runner
     introduction
     date = gets.chomp
-    asteroid_list = formatted_asteroid_data(date)
-    output(date, asteroid_list)
+    output(date, formatted_asteroid_data(date))
   end
 
   def self.introduction
@@ -17,14 +16,30 @@ class Start < NearEarthObjects
   end
 
   def self.output(date, asteroid_list)
+    output_stats(date, asteroid_list)
+    output_table(asteroid_list)
+  end
+
+  def self.output_stats(date, asteroid_list)
     puts "______________________________________________________________________________"
     puts "On #{DateTime.parse(date).strftime("%A %b %d, %Y")}, there were #{total_number_of_asteroids(date)} objects that almost collided with the earth."
     puts "The largest of these was #{largest_asteroid_diameter(date)} ft. in diameter."
     puts "\nHere is a list of objects with details:"
+  end
+
+  def self.output_table(asteroid_list)
     puts divider(asteroid_list)
     puts header(asteroid_list)
     create_rows(asteroid_list, column_data(asteroid_list))
     puts divider(asteroid_list)
+  end
+
+  def self.header(asteroid_list)
+    "| #{ column_data(asteroid_list).map { |_,col| col[:label].ljust(col[:width]) }.join(' | ') } |"
+  end
+
+  def self.divider(asteroid_list)
+    "+-#{column_data(asteroid_list).map { |_,col| "-"*col[:width] }.join('-+-') }-+"
   end
 
   def self.format_row_data(row_data, column_info)
@@ -49,13 +64,8 @@ class Start < NearEarthObjects
     end
   end
 
-  def self.header(asteroid_list)
-    "| #{ column_data(asteroid_list).map { |_,col| col[:label].ljust(col[:width]) }.join(' | ') } |"
-  end
 
-  def self.divider(asteroid_list)
-    "+-#{column_data(asteroid_list).map { |_,col| "-"*col[:width] }.join('-+-') }-+"
-  end
+
 
 
 end
