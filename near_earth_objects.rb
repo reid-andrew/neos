@@ -36,6 +36,15 @@ class NearEarthObjects
     "#{distance} miles"
   end
 
+  def self.formatted_asteroid_data(date)
+    self.find_neos_by_date(date).map do |asteroid|
+      {
+        name: asteroid[:name],
+        diameter: self.estimated_diameter(asteroid, true),
+        miss_distance: self.miss_distance(asteroid)
+      }
+    end
+  end
 
   ##########ORIGINAL CODE################
   # def self.find_neos_by_date(date)

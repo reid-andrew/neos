@@ -37,4 +37,12 @@ class NearEarthObjectsTest < Minitest::Test
     assert_equal "911947 miles", NearEarthObjects.miss_distance(results[0])
   end
 
+  def test_it_formats_asteroid_data
+    results = NearEarthObjects.formatted_asteroid_data('2019-03-30')
+
+    assert_equal '(2019 GD4)', results[0][:name]
+    assert_equal '61 ft', results[0][:diameter]
+    assert_equal '911947 miles', results[0][:miss_distance]
+  end
+
 end
