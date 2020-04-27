@@ -18,5 +18,11 @@ class NearEarthObjectsTest < Minitest::Test
     assert_equal 10233, result
   end
 
+  def test_it_calculates_total_number_of_astroids
+    result = NearEarthObjects.total_number_of_astroids('2019-03-30')
+
+    assert_equal 12, result
+  end
+
 
 end
