@@ -13,16 +13,22 @@ class NearEarthObjectsTest < Minitest::Test
   end
 
   def test_it_calculates_largest_asteroid
-    result = NearEarthObjects.largest_astroid_diameter('2019-03-30')
+    result = NearEarthObjects.largest_asteroid_diameter('2019-03-30')
 
     assert_equal 10233, result
   end
 
-  def test_it_calculates_total_number_of_astroids
-    result = NearEarthObjects.total_number_of_astroids('2019-03-30')
+  def test_it_calculates_total_number_of_asteroids
+    result = NearEarthObjects.total_number_of_asteroids('2019-03-30')
 
     assert_equal 12, result
   end
 
+  def test_it_formats_estimated_diameter
+    results = NearEarthObjects.find_neos_by_date('2019-03-30')
+
+    assert_equal "61 ft", NearEarthObjects.estimated_diameter(results[0], true)
+    assert_equal 61, NearEarthObjects.estimated_diameter(results[0], false)
+  end
 
 end

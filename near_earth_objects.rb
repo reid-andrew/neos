@@ -24,14 +24,19 @@ class NearEarthObjects
     # end
   end
 
-  def self.largest_astroid_diameter(date)
-    self.find_neos_by_date(date).map do |astroid|
-      astroid[:estimated_diameter][:feet][:estimated_diameter_max].to_i
+  def self.largest_asteroid_diameter(date)
+    self.find_neos_by_date(date).map do |asteroid|
+      self.estimated_diameter(asteroid)
     end.max { |a,b| a<=> b}
   end
 
-  def self.total_number_of_astroids(date)
+  def self.total_number_of_asteroids(date)
     self.find_neos_by_date(date).count
+  end
+
+  def self.estimated_diameter(asteroid, string = false)
+    diameter = asteroid[:estimated_diameter][:feet][:estimated_diameter_max].to_i
+    string ? "#{diameter} ft" : diameter
   end
 
 
