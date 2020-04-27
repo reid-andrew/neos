@@ -6,7 +6,6 @@ puts "Please enter a date in the following format YYYY-MM-DD."
 print ">>"
 
 date = gets.chomp
-asteroid_details = NearEarthObjects.find_neos_by_date(date)
 asteroid_list = NearEarthObjects.formatted_asteroid_data(date)
 total_number_of_asteroids = NearEarthObjects.total_number_of_asteroids(date)
 largest_asteroid = NearEarthObjects.largest_asteroid_diameter(date)
