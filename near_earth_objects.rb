@@ -35,6 +35,12 @@ class NearEarthObjects
     # }
   end
 
+  def self.largest_astroid_diameter(date)
+    self.find_neos_by_date(date).map do |astroid|
+      astroid[:estimated_diameter][:feet][:estimated_diameter_max].to_i
+    end.max { |a,b| a<=> b}
+  end
+
 
   ##########ORIGINAL CODE################
   # def self.find_neos_by_date(date)
