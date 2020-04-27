@@ -31,4 +31,10 @@ class NearEarthObjectsTest < Minitest::Test
     assert_equal 61, NearEarthObjects.estimated_diameter(results[0], false)
   end
 
+  def test_it_calculates_miss_distance
+    results = NearEarthObjects.find_neos_by_date('2019-03-30')
+
+    assert_equal "911947 miles", NearEarthObjects.miss_distance(results[0])
+  end
+
 end
