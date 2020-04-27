@@ -7,8 +7,6 @@ print ">>"
 
 date = gets.chomp
 asteroid_list = NearEarthObjects.formatted_asteroid_data(date)
-total_number_of_asteroids = NearEarthObjects.total_number_of_asteroids(date)
-largest_asteroid = NearEarthObjects.largest_asteroid_diameter(date)
 
 column_labels = { name: "Name", diameter: "Diameter", miss_distance: "Missed The Earth By:" }
 column_data = column_labels.each_with_object({}) do |(col, label), hash|
@@ -29,10 +27,9 @@ def create_rows(asteroid_data, column_info)
   asteroid_data.each { |asteroid| format_row_data(asteroid, column_info) }
 end
 
-formated_date = DateTime.parse(date).strftime("%A %b %d, %Y")
 puts "______________________________________________________________________________"
-puts "On #{formated_date}, there were #{total_number_of_asteroids} objects that almost collided with the earth."
-puts "The largest of these was #{largest_asteroid} ft. in diameter."
+puts "On #{DateTime.parse(date).strftime("%A %b %d, %Y")}, there were #{NearEarthObjects.total_number_of_asteroids(date)} objects that almost collided with the earth."
+puts "The largest of these was #{NearEarthObjects.largest_asteroid_diameter(date)} ft. in diameter."
 puts "\nHere is a list of objects with details:"
 puts divider
 puts header
