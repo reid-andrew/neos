@@ -1,10 +1,10 @@
 require_relative 'near_earth_objects'
 
-class Start
+class Start < NearEarthObjects
   def self.runner
     introduction
     date = gets.chomp
-    asteroid_list = NearEarthObjects.formatted_asteroid_data(date)
+    asteroid_list = formatted_asteroid_data(date)
     output(date, asteroid_list)
   end
 
@@ -18,8 +18,8 @@ class Start
 
   def self.output(date, asteroid_list)
     puts "______________________________________________________________________________"
-    puts "On #{DateTime.parse(date).strftime("%A %b %d, %Y")}, there were #{NearEarthObjects.total_number_of_asteroids(date)} objects that almost collided with the earth."
-    puts "The largest of these was #{NearEarthObjects.largest_asteroid_diameter(date)} ft. in diameter."
+    puts "On #{DateTime.parse(date).strftime("%A %b %d, %Y")}, there were #{total_number_of_asteroids(date)} objects that almost collided with the earth."
+    puts "The largest of these was #{largest_asteroid_diameter(date)} ft. in diameter."
     puts "\nHere is a list of objects with details:"
     puts divider(asteroid_list)
     puts header(asteroid_list)
